@@ -34,7 +34,9 @@ const chatEl = document.getElementById("chat");
 const EMBEDDED_API_KEY = "__GROQ_API_KEY_PLACEHOLDER__";
 
 function getApiKey() {
-  return EMBEDDED_API_KEY !== "__GROQ_API_KEY_PLACEHOLDER__" ? EMBEDDED_API_KEY : null;
+  // Real Groq keys never contain "__"; this check must not repeat the literal placeholder
+  // string, since the deploy workflow's sed replaces every occurrence of it in this file.
+  return EMBEDDED_API_KEY.includes("__") ? null : EMBEDDED_API_KEY;
 }
 
 function loadExamples() {
@@ -130,7 +132,7 @@ async function sendMessage() {
 
   const apiKey = getApiKey();
   if (!apiKey) {
-    addMessage("system", "No Groq API key found. Add one to config.js.");
+    addMessage("system", "No Groq API key found. This only works on the deployed GitHub Pages site, or locally after temporarily pasting a key into EMBEDDED_API_KEY in main.js.");
     return;
   }
 
