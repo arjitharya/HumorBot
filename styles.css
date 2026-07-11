@@ -1,0 +1,118 @@
+:root {
+  color-scheme: light dark;
+  --bg: #0f1115;
+  --panel: #1a1d24;
+  --border: #2c303a;
+  --text: #e8e8ec;
+  --muted: #9a9fae;
+  --accent: #6c8cff;
+  --good: #3ecf8e;
+  --bad: #ff6b6b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px 12px;
+}
+main {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+.sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+input[type="text"] {
+  flex: 1;
+  background: #11141a;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+button.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+#chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+}
+.msg {
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 85%;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+.msg.user {
+  align-self: flex-end;
+  background: var(--accent);
+  color: white;
+}
+.msg.bot {
+  align-self: flex-start;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+.msg.system {
+  align-self: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.feedback {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.feedback button {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+}
+.feedback .approve { background: var(--good); }
+.feedback .disapprove { background: var(--bad); }
+.feedback .status {
+  font-size: 0.78rem;
+  color: var(--muted);
+  align-self: center;
+}
+#inputRow {
+  display: flex;
+  gap: 8px;
+  position: sticky;
+  bottom: 0;
+}
+#inputRow input {
+  padding: 10px 12px;
+}
