@@ -7,44 +7,26 @@ own sense of humor rather than answer questions or fetch info.
 A single static page — no build step, no server, no framework:
 
 - `index.html` — markup
-- `main.js` — chat logic (calls Groq's OpenAI-compatible API directly from the browser)
+- `main.js` — chat logic (calls Groq's OpenAI-compatible API directly from the browser). Has a
+  placeholder, `__GROQ_API_KEY_PLACEHOLDER__`, substituted with the real key at deploy time.
 - `styles.css` — all styling
-- `config.js` — your Groq API key (gitignored, see setup below); `config.js.example` shows the
-  format
 - `.github/workflows/deploy.yml` — deploys to GitHub Pages on every push to `main`
 
-## Usage
+## Local development
 
-Open `index.html` directly in a browser.
-
-### 1. Set up your Groq API key
-
-Get a free key at [console.groq.com/keys](https://console.groq.com/keys), then copy
-`config.js.example` to `config.js` and set:
-
-```js
-window.GROQ_API_KEY = "gsk_...";
-```
-
-`config.js` is gitignored, so your real key is never committed — `index.html` loads it
-automatically on open.
-
-### 2. Chat
+There's no key baked in locally, since the real key only gets substituted in during deploy. To
+test locally with a real key, temporarily replace `__GROQ_API_KEY_PLACEHOLDER__` in `main.js`
+with your key, use the page, then revert the edit before committing (never commit a real key).
 
 Talk to HumorBot like you would a friend. After each reply, click **Approve** to save that
 exchange as a style example (pulled back in as a style reference for future similar messages) or
 **Disapprove** to skip it. Approved examples are stored in your browser's `localStorage` only.
 
-**Note:** since this is a static page with no backend, the API key lives in `config.js` and is
-sent directly from your browser to Groq's API. This repo is public, so `config.js` stays
-gitignored specifically to keep your real key out of source — don't remove it from `.gitignore`
-or hardcode a real key into `index.html` or `config.js.example`.
-
 ## Deploying to GitHub Pages
 
 `.github/workflows/deploy.yml` substitutes the `GROQ_API_KEY` repo secret directly into
-`main.js` (replacing an `__GROQ_API_KEY_PLACEHOLDER__` marker) and deploys the whole site on
-every push to `main` — no `config.js` involved on the deployed site at all. One-time setup:
+`main.js` (replacing `__GROQ_API_KEY_PLACEHOLDER__`) and deploys the whole site on every push to
+`main`. One-time setup:
 
 1. **Add the secret:** repo Settings → Secrets and variables → Actions → New repository secret,
    named `GROQ_API_KEY`, value = your Groq key.
