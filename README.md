@@ -39,3 +39,8 @@ exchange as a style example (pulled back in as a style reference for future simi
 client-side JavaScript — anyone who visits the live site can view-source and read it out. Keep
 this to a free-tier Groq key you're fine sharing the quota on, never a paid/production key
 (same tradeoff as the SimpleSpeech project).
+
+## Acknowledgements
+
+Claude was used to debug the GitHub Actions deploy workflow's handling of the `GROQ_API_KEY`
+secret (hence its appearance as a contributor on this repo).
