@@ -42,8 +42,9 @@ or hardcode a real key into `index.html` or `config.js.example`.
 
 ## Deploying to GitHub Pages
 
-`.github/workflows/deploy.yml` builds `config.js` from a repo secret and deploys the whole site
-on every push to `main`. One-time setup:
+`.github/workflows/deploy.yml` substitutes the `GROQ_API_KEY` repo secret directly into
+`main.js` (replacing an `__GROQ_API_KEY_PLACEHOLDER__` marker) and deploys the whole site on
+every push to `main` — no `config.js` involved on the deployed site at all. One-time setup:
 
 1. **Add the secret:** repo Settings → Secrets and variables → Actions → New repository secret,
    named `GROQ_API_KEY`, value = your Groq key.

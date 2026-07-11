@@ -29,7 +29,13 @@ reply to the current message.`;
 
 const chatEl = document.getElementById("chat");
 
+// Replaced with the real key at deploy time by .github/workflows/deploy.yml, straight from the
+// GROQ_API_KEY repo secret - no config.js needed on the deployed site.
+const EMBEDDED_API_KEY = "__GROQ_API_KEY_PLACEHOLDER__";
+
 function getApiKey() {
+  if (EMBEDDED_API_KEY !== "__GROQ_API_KEY_PLACEHOLDER__") return EMBEDDED_API_KEY;
+  // Local dev fallback: config.js (gitignored) sets window.GROQ_API_KEY.
   return window.GROQ_API_KEY || null;
 }
 
